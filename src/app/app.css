@@ -1,0 +1,234 @@
+/* ModeSelectionScreen.css */
+/* Reset de márgenes y paddings globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0f; /* Evita destellos blancos al cargar */
+}
+
+.container {
+  min-height: 100vh;
+  background-color: #0a0a0f;
+  color: #ffffff;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Glows de fondo */
+.glow-purple {
+  position: absolute;
+  top: -10%;
+  left: 15%;
+  width: 350px;
+  height: 350px;
+  background-color: #7b2cbf;
+  filter: blur(140px);
+  opacity: 0.35;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.glow-cyan {
+  position: absolute;
+  bottom: -10%;
+  right: 15%;
+  width: 350px;
+  height: 350px;
+  background-color: #00e5ff;
+  filter: blur(140px);
+  opacity: 0.25;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  z-index: 1;
+}
+
+.badge {
+  color: #00ff66;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(0, 255, 102, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.title-highlight {
+  background: linear-gradient(90deg, #9d4edd 0%, #00e5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #a0a0b0;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Grid de Tarjetas */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 960px;
+  z-index: 1;
+}
+
+.card {
+  background-color: #13131c;
+  border: 1px solid #242436;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-human {
+  box-shadow: 0 4px 20px rgba(0, 255, 102, 0.05);
+}
+
+.card-human:hover {
+  border-color: #00ff66;
+  box-shadow: 0 8px 30px rgba(0, 255, 102, 0.2);
+}
+
+.card-ai {
+  box-shadow: 0 4px 20px rgba(157, 78, 221, 0.08);
+  border: 1px solid rgba(157, 78, 221, 0.4);
+}
+
+.card-ai:hover {
+  border-color: #9d4edd;
+  box-shadow: 0 8px 30px rgba(157, 78, 221, 0.3);
+}
+
+.card-sim {
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.05);
+}
+
+.card-sim:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 8px 30px rgba(0, 229, 255, 0.2);
+}
+
+/* Iconos y Textos internos */
+.icon-container {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.icon-green {
+  color: #00ff66;
+}
+
+.icon-cyan {
+  color: #00e5ff;
+}
+
+.icon-purple {
+  color: #9d4edd;
+}
+
+.vs-text {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #6c6c8a;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.card-desc {
+  color: #8e8ea8;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+/* Botones / Tags inferiores */
+.btn-tag-human {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  padding: 6px 16px;
+  border-radius: 8px;
+}
+
+.btn-tag-ai {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  /* background: linear-gradient(90deg, #7b2cbf, #9d4edd); */
+  padding: 7px 18px;
+  border-radius: 8px;
+  border: 1px solid #7b2cbf;
+}
+
+.btn-tag-sim {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00e5ff;
+  border: 1px solid #00e5ff;
+  padding: 6px 16px;
+  border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+  margin-top: 3rem;
+  color: #52526a;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  z-index: 1;
+}
+
+.notEvents{
+  pointer-events: none;
+}
