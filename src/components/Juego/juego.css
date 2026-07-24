@@ -1,0 +1,205 @@
+/* GameBoardScreen.css */
+
+.game-container {
+  min-height: 100vh;
+  background-color: #0a0a0f;
+  color: #ffffff;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Header / Marcador */
+.game-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  z-index: 1;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #13131c;
+  border: 1px solid #242436;
+  padding: 0.8rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.player-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.player-x {
+  color: #00ff66;
+}
+
+.player-o {
+  color: #00e5ff;
+}
+
+.score-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.score-divider {
+  color: #52526a;
+  font-weight: 800;
+}
+
+.turn-indicator {
+  font-size: 1.5rem;
+  color: #a0a0b0;
+  background: rgba(157, 78, 221, 0.15);
+  border: 1px solid rgba(157, 78, 221, 0.4);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.turn-highlight {
+  color: #00ff66;
+  font-weight: 700;
+}
+
+/* Tablero de Juego */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  background-color: #13131c;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #242436;
+  box-shadow: 0 8px 32px rgba(157, 78, 221, 0.15);
+  z-index: 1;
+}
+
+.cell {
+  color: #ffffff;
+  background-color: #0a0a0f;
+  border: 1px solid #242436;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.cell:hover {
+  background-color: #1a1a26;
+  border-color: #9d4edd;
+}
+
+/* Estilos para las fichas X u O */
+.cell-x {
+  color: #00ff66;
+  text-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+}
+
+.cell-o {
+  color: #00e5ff;
+  text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+}
+
+/* Botones de Control */
+.game-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  z-index: 1;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #242436;
+  color: #a0a0b0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: #00e5ff;
+  color: #ffffff;
+}
+
+.btn-reset {
+  background: linear-gradient(90deg, #7b2cbf, #9d4edd);
+  border: none;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(157, 78, 221, 0.3);
+}
+
+.btn-reset:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Mensaje del Ganador en Grande */
+.winner-banner {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.winner-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+}
+
+.winner-highlight {
+  background: linear-gradient(90deg, #00ff66, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2.6rem;
+}
+
+/* Animación de entrada para que resalte cuando aparezca */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
