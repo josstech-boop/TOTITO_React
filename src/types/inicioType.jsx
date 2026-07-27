@@ -2,6 +2,7 @@ const Inicio = {
     seleccionar: 'SELECCIONAR',
     continuar: 'CONTINUAR',
     marcar: 'MARCAR',
+    pensandoAI: 'PENSANDOAI'
 
 }
 

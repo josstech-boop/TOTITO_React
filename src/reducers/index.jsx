@@ -20,15 +20,13 @@ const reducer = (state, action) => {
             }
 
         case Inicio.marcar:
-            nuevoArreglo= [...state.tablero]
+            nuevoArreglo = [...state.tablero]
             nuevoArreglo[action.payload.index] = action.payload.Symbol
             return {
                 ...state,
                 tablero: [...nuevoArreglo],
-                turno: state.turno == 'X'? 'O': 'X'
+                turno: state.turno == 'X' ? 'O' : 'X'
             }
-
-
 
 
         default:

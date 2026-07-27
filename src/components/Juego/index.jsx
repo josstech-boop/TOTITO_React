@@ -5,20 +5,41 @@ import { useContext } from "react";
 
 const Juego = () => {
 
-    const { state, MarcaHumano, RevisarGanador } = React.useContext(TotitoContext)
+    const { state, MarcaHumano, RevisarGanador, TirarAI } = React.useContext(TotitoContext)
     const [bloqueo, setBloqueo] = React.useState(false)
-    const [ganador, setGanador] = React.useState('empate')
+    const [ganador, setGanador] = React.useState('')
+    const [pensandoAI, setPensandoAI] = React.useState(false)
+    const [bloqueoAnalizar , setBloqueoAnalizar] = React.useState(false)
+
+
+    const recibirTiro = async () => {
+
+        let posicion = await TirarAI(state.tablero)
+        MarcaHumano(posicion)
+        setBloqueo(false)
+        setPensandoAI(false)
+    }
+
     useEffect(() => {
 
         const { isGanadorX, isGanadorO } = RevisarGanador()
-        if ((isGanadorO || isGanadorX) && bloqueo != true || state.tablero.every(item => item != undefined)) {
+        if ((isGanadorO || isGanadorX) && bloqueoAnalizar != true || state.tablero.every(item => item != undefined)) {
+            setBloqueoAnalizar(true)
             setBloqueo(true)
             setGanador(isGanadorX ? '¡¡ JUGADOR X GANA !!' : isGanadorO ? '¡¡ JUGADOR O GANA !!' : '¡¡EMPATE!!!')
 
         }
-      
 
-    }, [state.tablero])
+        if (state.opcionInicio === 2) {
+
+            if (state.turno == 'O' && !isGanadorO && !isGanadorX && state.tablero.some(item => item == undefined)) {
+                setBloqueo(true)
+                setPensandoAI(true)
+                recibirTiro()
+            }
+        }
+
+    }, [state.tablero, RevisarGanador, bloqueoAnalizar, state.turno, TirarAI])
 
 
     return (
@@ -30,13 +51,13 @@ const Juego = () => {
             {/* Header con marcador de puntos e indicador de turno */}
             <header className="game-header">
 
-                {bloqueo && <div className="winner-banner">
+                {bloqueoAnalizar && <div className="winner-banner">
                     <h1 className="winner-title winner-highlight">
                         {ganador}
                     </h1>
                 </div>}
 
-                <div className="scoreboard">
+                {/* <div className="scoreboard">
                     <div className="player-score">
                         <span className="player-label player-x">Jugador X</span>
                         <span className="score-number">2</span>
@@ -46,17 +67,26 @@ const Juego = () => {
                         <span className="player-label player-o">Jugador O</span>
                         <span className="score-number">1</span>
                     </div>
-                </div>
+                </div> */}
 
                 <div className="turn-indicator">
                     Turno de: <span className="turn-highlight">{state.turno}</span>
                 </div>
 
-
-
-
-
             </header>
+
+            {/* Estado cuando la IA está pensando */}
+            {
+                pensandoAI && <div className="ai-thinking-badge">
+                    <span className="ai-thinking-text">🤖 La IA está pensando</span>
+                    <div className="dots-container">
+                        <span className="dot"></span>
+                        <span className="dot"></span>
+                        <span className="dot"></span>
+                    </div>
+                </div>
+            }
+
 
             {/* Tablero 3x3 (Visualización estática como maqueta) */}
             <main className="board-grid" >

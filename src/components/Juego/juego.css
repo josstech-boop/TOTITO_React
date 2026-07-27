@@ -68,7 +68,7 @@
 }
 
 .turn-indicator {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #a0a0b0;
   background: rgba(157, 78, 221, 0.15);
   border: 1px solid rgba(157, 78, 221, 0.4);
@@ -77,7 +77,8 @@
 }
 
 .turn-highlight {
-  color: #00ff66;
+  font-size: 1.5rem;
+  color: #ff0d0d;
   font-weight: 700;
 }
 
@@ -192,12 +193,87 @@
   font-size: 2.6rem;
 }
 
+/* Indicador de IA Pensando */
+.ai-thinking-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #9d4edd;
+  background: rgba(157, 78, 221, 0.12);
+  border: 1px solid rgba(157, 78, 221, 0.5);
+  padding: 8px 18px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+  animation: pulseGlow 1.5s infinite alternate;
+  margin-bottom: 12px;
+}
+
+.ai-thinking-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Animación de Puntos (...) */
+.dots-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: #00e5ff;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounceDot 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Keyframes para animaciones */
+@keyframes bounceDot {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.3);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #00ff66;
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    border-color: rgba(157, 78, 221, 0.4);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
+  }
+
+  100% {
+    border-color: rgba(0, 229, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+  }
+}
+
 /* Animación de entrada para que resalte cuando aparezca */
 @keyframes popIn {
   0% {
     opacity: 0;
     transform: scale(0.6) translateY(-10px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
