@@ -14,13 +14,13 @@ const InicioJuego = ({ OnContinuar }) => {
 
     const Onclick = (event) => {
         console.log('Se selecciono la opcion', event.target.id)
-        if(event.target.id > 0 && event.target.id <= 3){
-                    dispatch({ type: Inicio.seleccionar, payload: { opcionInicio: parseInt(event.target.id)} })
+        if (event.target.id > 0 && event.target.id <= 3) {
+            dispatch({ type: Inicio.seleccionar, payload: { opcionInicio: parseInt(event.target.id) } })
 
-        }else{
+        } else {
             alert('Selecione un valor valido')
         }
-        
+
     }
 
     return (
@@ -77,16 +77,7 @@ const InicioJuego = ({ OnContinuar }) => {
                     <span className="btn-tag-sim notEvents" >ESPECTADOR</span>
                 </button>
 
-                <button id='4' className={`card card-sim  ${state.opcionInicio == OpcionesValidas.AIAI && 'active'}`} onClick={Onclick}>
-                    <div className="icon-container notEvents">
-                        <span className="icon-purple">🤖</span>
-                        <span className="vs-text">VS</span>
-                        <span className="icon-green">🤖</span>
-                    </div>
-                    <h2 className="card-title notEvents">Prueba</h2>
-                    <p className="card-desc notEvents">Mira una simulación automática entre inteligencias</p>
-                    <span className="btn-tag-sim notEvents" >lalallala</span>
-                </button>
+
             </main>
 
             <footer className="footer">

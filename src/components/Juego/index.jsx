@@ -5,19 +5,22 @@ import { useContext } from "react";
 
 const Juego = () => {
 
-    const { state, MarcaHumano, RevisarGanador, TirarAI } = React.useContext(TotitoContext)
+    const { state, MarcaHumano, RevisarGanador, TirarAI, } = React.useContext(TotitoContext)
     const [bloqueo, setBloqueo] = React.useState(false)
     const [ganador, setGanador] = React.useState('')
     const [pensandoAI, setPensandoAI] = React.useState(false)
-    const [bloqueoAnalizar , setBloqueoAnalizar] = React.useState(false)
+    const [bloqueoAnalizar, setBloqueoAnalizar] = React.useState(false)
 
 
     const recibirTiro = async () => {
 
-        let posicion = await TirarAI(state.tablero)
+        let posicion = await TirarAI(state.tablero, state.turno)
+        console.log(posicion)
+
         MarcaHumano(posicion)
         setBloqueo(false)
         setPensandoAI(false)
+
     }
 
     useEffect(() => {
@@ -30,11 +33,21 @@ const Juego = () => {
 
         }
 
-        if (state.opcionInicio === 2) {
+        if (state.opcionInicio === 2 || state.opcionInicio === 3 && state.turno != 'X') {
 
             if (state.turno == 'O' && !isGanadorO && !isGanadorX && state.tablero.some(item => item == undefined)) {
                 setBloqueo(true)
                 setPensandoAI(true)
+                recibirTiro()
+            }
+        }
+
+        // Estamos empezando logica para ia vs ia 
+        if (state.opcionInicio === 3 && state.turno == "X") {
+
+
+            if (state.turno == 'X' && !isGanadorO && !isGanadorX && state.tablero.some(item => item == undefined)) {
+                setBloqueo(true)
                 recibirTiro()
             }
         }

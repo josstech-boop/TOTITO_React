@@ -63,7 +63,9 @@ const TotitoProvider = ({ children }) => {
     {"posicion": numero}`
 
 
-    const TirarAI = async (tablero) => {
+    const TirarAI = async (tablero, turno) => {
+
+        console.log('TURNO DEEE', turno)
         try {
 
             const response = await client.responses.create({
@@ -77,19 +79,19 @@ const TotitoProvider = ({ children }) => {
                         role: 'user',
                         content: JSON.stringify({
                             tablero,
-                            jugadorIA: 'O',
+                            jugadorIA: turno,
                         })
                     }],
             })
 
             const resultado = JSON.parse(response.output_text)
-            state.pensandoAI
             return resultado.posicion
 
         } catch (error) {
             console.log(error)
         }
     }
+
 
     return (
         <TotitoContext.Provider value={
@@ -99,6 +101,7 @@ const TotitoProvider = ({ children }) => {
                 MarcaHumano,
                 RevisarGanador,
                 TirarAI,
+
             }
         }>
             {children}
